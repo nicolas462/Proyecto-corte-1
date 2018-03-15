@@ -12,7 +12,7 @@ import java.io.*;
 */
 
 /**
- * Esta clase genera secuencias geneticas aleatorias
+ * Esta clase genera secuencias genéticas aleatorias
  * @author Nicolás Espejo
  *
  */
@@ -46,7 +46,7 @@ public static int inicio(int ri) {
 }
 //Función que crea el archivo .txt
 public static void createfile() throws IOException{
-	FileWriter fl = new FileWriter("Secuencia.txt"); //Escritor del archivo
+	FileWriter fl = new FileWriter("secuencia.txt"); //Escritor del archivo
 	BufferedWriter bw = new BufferedWriter(fl); //Buffer del escritor
 	int n=1000;
 	Random rd = new Random();
@@ -55,7 +55,7 @@ public static void createfile() throws IOException{
 		for(int i=0; i<1000; i++) {
 			int num = rd.nextInt(46)+5;
 			int ri = rdi.nextInt(1000)+1;
-			int fin = ri+num;
+			int fin = ri+num-1;
 			bw.write(seq(num) + "," + cromosomas() + "," + inicio(ri)+","+ fin + "\n");
 		}
 		bw.flush();	//Guarda la secuencia en el buffer
