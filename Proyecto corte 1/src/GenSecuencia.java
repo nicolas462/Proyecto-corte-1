@@ -11,6 +11,11 @@ import java.io.*;
 * GNU General Public License as published by the Free Software Foundation, version 3.
 */
 
+/**
+ * Esta clase genera secuencias geneticas aleatorias
+ * @author Nicolás Espejo
+ *
+ */
 public class GenSecuencia {
 //Función que retorna un valor String (A,C,G,T)
 public static String secuencia () {
