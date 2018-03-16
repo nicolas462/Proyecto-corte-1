@@ -1,3 +1,4 @@
+package Lectura;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -38,6 +39,9 @@ public class Lector {
 		System.out.println(datos[2]);
 		System.out.println(datos[3]);
 		
+		for (int i=0; i< datos[0].length() - 3; i++) {
+			System.out.println(datos [0].substring(i, i+3));
+		}
 	}
 
 }

@@ -1,15 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
+import Lectura.Lector;
 import java.io.*;
-/*
-* Solution for a class project.
-*
-* Created by Nicolás David Espejo on Marcho 2018.
-* Copyright (c) 2018 Nicolás David Espejo. All rights reserved.
-*
-* Proyecto FF.EE.DD is free software: you can redistribute it and/or modify it under the terms of the
-* GNU General Public License as published by the Free Software Foundation, version 3.
-*/
 
 /**
  * Esta clase genera secuencias genéticas aleatorias
@@ -65,5 +57,7 @@ public static void createfile() throws IOException{
 public static void main(String[] args) throws IOException {
 	GenSecuencia cf = new GenSecuencia(); 
 	cf.createfile();
+	Lector lctr = new Lector();
+	lctr.Imprimir();
 	}
 }
