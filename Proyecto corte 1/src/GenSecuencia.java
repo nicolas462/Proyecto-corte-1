@@ -54,9 +54,12 @@ public static void createfile() throws IOException{
 	catch (Exception ex) {}
 }
 public static void main(String[] args) throws IOException {
+	Scanner sc = new Scanner (System.in);
 	GenSecuencia cf = new GenSecuencia(); 
 	cf.createfile();
 	Lector lctr = new Lector();
 	lctr.Imprimir();
+	int motif = sc.nextInt();
+	lctr.motif(motif);
 	}
 }
