@@ -1,6 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-import Lectura.Lector;
 import java.io.*;
 
 /**
