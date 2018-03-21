@@ -1,8 +1,8 @@
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Esta clase lee la cadena genética para encontrar motif
@@ -26,11 +26,9 @@ public class Lector {
 		catch (Exception ex) {}
 	}
 	public static void main(String[] args) throws IOException {
-		Lector lctr = new Lector();
-		lctr.Imprimir();
 		FileReader fr = new FileReader("secuencia.txt"); //Leer archivo
 		BufferedReader br = new BufferedReader(fr);//Almacena la lectura del archivo
-		String line = br.readLine();//Se crea un string donde se traslada lo almacenado en el búffer
+		String line = br.readLine();//Se crea un string donde se almacena una línea del archivo
 		System.out.println(line);
 		
 		String [] datos = line.split(",");
@@ -39,8 +37,11 @@ public class Lector {
 		System.out.println(datos[2]);
 		System.out.println(datos[3]);
 		
-		for (int i=0; i< datos[0].length() - 3; i++) {
-			System.out.println(datos [0].substring(i, i+3));
+		Scanner sc = new Scanner (System.in);
+		int motif = sc.nextInt();
+		
+		for (int i=0; i< datos[0].length() - motif; i++) {
+			System.out.println(datos [0].substring(i, i+motif));
 		}
 	}
 
