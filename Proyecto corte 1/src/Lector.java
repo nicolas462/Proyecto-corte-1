@@ -31,15 +31,25 @@ public class Lector {
 			BufferedReader br = new BufferedReader(fr);//Almacena la lectura del archivo
 			String line = br.readLine();//Se crea un string donde se almacena una línea del archivo
 			System.out.println(line);
-			
+			int contador = 0;
 			String [] datos = line.split(",");
 			System.out.println(datos[0]);
 			System.out.println(datos[1]);
 			System.out.println(datos[2]);
 			System.out.println(datos[3]);
-
-			for (int i=0; i< datos[0].length() - motif; i++) {
-				System.out.println(datos [0].substring(i, i+motif));
+			String [] secuencias = new String [datos [0].length() - motif];
+			for (int i=0; i< datos[0].length() - motif; i++) { //Se almacenan las secuencias en un vector.
+				secuencias [i] =(datos [0].substring(i, i+motif));
+				System.out.println(secuencias [i]);
+			}
+			for (int j=0; j<= datos[0].length() - motif; j++) { //Se empiezan a comparar las secuencias.
+				for (int k = 0; k<datos[0].length() - motif; k++) {
+						if (secuencias[k].equals(secuencias[j])) {
+							contador ++;
+						}
+				}
+				System.out.println(secuencias[j] + " " + contador);
+				contador =0;
 			}
 		}
 		catch (Exception ex) {}
