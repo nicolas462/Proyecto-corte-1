@@ -65,7 +65,7 @@ public class Lector {
 				System.out.println("No se encontró subcadena repetida.");
 			}
 			else {
-			System.out.println("La subcadena " + repetido + " se repite " + auxiliar + " veces");
+			System.out.println("El motif que más se repite " + repetido + " se repite " + auxiliar + " veces");
 			}
 			//}
 		}
