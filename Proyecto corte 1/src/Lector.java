@@ -7,6 +7,8 @@ import java.util.Scanner;
  *
  */
 public class Lector {
+	public int contador = 0, auxiliar = 0;
+	public String repetido= "";
 	//Función para mostrar la secuencia
 	public void Imprimir() {
 		try {
@@ -29,37 +31,38 @@ public class Lector {
 			FileReader fr = new FileReader("secuencia.txt"); //Leer archivo
 			BufferedReader br = new BufferedReader(fr);//Almacena la lectura del archivo
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter (System.out));
-			String line = br.readLine();//Se crea un string donde se almacena una línea del archivo
-			int contador = 0;
-			int auxiliar = 0;
-			String repetido = "";
-			
+			String line = br.readLine();//Se crea un string donde se almacena una línea del archivo			
 			String [] datos = line.split(",");//Se apartan los datos por comas y se guardan en vectores.
 			String [] secuencias = new String [datos [0].length() - motif];//Se almacenan las secuencias en un vector.
 			/*while (line != null) {*/
-			for (int i=0; i< datos[0].length() - motif; i++) { 
-				bw.write (datos [0].substring(i, i+motif));
-				bw.newLine();
-				}
+			for (int i=0; i< datos[0].length() - motif; i++)
+			{ 
+				secuencias[i]=datos[0].substring(i, i+motif);
+				/*bw.write (datos [0].substring(i, i+motif));
+				bw.newLine();*/
+			}
 			/*}*/
 			 
-			for (int j=0; j<= datos[0].length() - motif; j++) //Se empiezan a comparar las secuencias.
+			for (int j=0; j<datos[0].length() - motif; j++) //Se empiezan a comparar las secuencias.
 			{ 
-				for (int k = 0; k<datos[0].length() - motif; k++) {
-						if (secuencias[k].equals(secuencias[j])) {
+				for (int k = 0; k<datos[0].length() - motif; k++) 
+				{
+						if (secuencias[k].equals(secuencias[j])) //Se comparan las secuencias.
+						{
 							contador ++;
-							
-							if (auxiliar>contador) {
+							if (contador >= auxiliar)
+								if (contador > 1) {
+								auxiliar = contador; //Se almacena el mayor número de repeticiones.
 								repetido = secuencias[k];
-							}
-							else
-								repetido = "No hay";
+								}	
 						}
-						auxiliar = contador;
+						
 				}
 				System.out.println(secuencias[j] + " " + contador);
+				
 				contador =0;
-				System.out.println("Es: " + repetido);
+				
+				System.out.println("Es: " + repetido + " Contador" + auxiliar);
 			
 			}
 			
