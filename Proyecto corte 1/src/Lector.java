@@ -41,7 +41,7 @@ public class Lector {
 				/*bw.write (datos [0].substring(i, i+motif));
 				bw.newLine();*/
 			}
-			/*}*/
+			//}
 			 
 			for (int j=0; j<datos[0].length() - motif; j++) //Se empiezan a comparar las secuencias.
 			{ 
@@ -56,16 +56,16 @@ public class Lector {
 								repetido = secuencias[k];
 								}	
 						}
-						
+	
 				}
-				System.out.println(secuencias[j] + " " + contador);
+				//System.out.println(secuencias[j] + " " + contador);
 				
 				contador =0;
 				
-				System.out.println("Es: " + repetido + " Contador" + auxiliar);
+				
 			
 			}
-			
+			System.out.println("La subcadena " + repetido + " se repite " + auxiliar + " veces");
 		}
 		catch (Exception ex) {}	
 	}
