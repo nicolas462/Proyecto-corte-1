@@ -38,8 +38,9 @@ public class Lector {
 			for (int i=0; i< datos[0].length() - motif; i++)
 			{ 
 				secuencias[i]=datos[0].substring(i, i+motif);
-				/*bw.write (datos [0].substring(i, i+motif));
-				bw.newLine();*/
+				bw.write (datos [0].substring(i, i+motif));
+				bw.newLine();
+				bw.flush();
 			}
 			
 			 
@@ -62,10 +63,10 @@ public class Lector {
 				contador =0;
 			}
 			if(repetido == "" ) {
-				System.out.println("No se encontró subcadena repetida.");
+				System.out.println("No se encontró motif repetido.");
 			}
 			else {
-			System.out.println("El motif que más se repite " + repetido + " se repite " + auxiliar + " veces");
+			System.out.println("El motif que más se repite es " + repetido + ", está " + auxiliar + " veces.");
 			}
 			//}
 		}

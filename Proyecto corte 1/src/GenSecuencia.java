@@ -59,6 +59,7 @@ public static void main(String[] args) throws IOException {
 	cf.createfile();
 	Lector lctr = new Lector();
 	lctr.Imprimir();
+	System.out.println("Ingrese el tamaño del motif:");
 	int motif = sc.nextInt();
 	lctr.motif(motif);
 	}
