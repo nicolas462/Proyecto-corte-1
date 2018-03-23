@@ -30,30 +30,38 @@ public class Lector {
 			FileReader fr = new FileReader("secuencia.txt"); //Leer archivo
 			BufferedReader br = new BufferedReader(fr);//Almacena la lectura del archivo
 			String line = br.readLine();//Se crea un string donde se almacena una línea del archivo
-			System.out.println(line);
 			int contador = 0;
+			int auxiliar = 0;
+			String repetido = "";
+			while (line != null) {
 			String [] datos = line.split(",");
-			System.out.println(datos[0]);
-			System.out.println(datos[1]);
-			System.out.println(datos[2]);
-			System.out.println(datos[3]);
-			String [] secuencias = new String [datos [0].length() - motif];
-			for (int i=0; i< datos[0].length() - motif; i++) { //Se almacenan las secuencias en un vector.
+			String [] secuencias = new String [datos [0].length() - motif];//Se almacenan las secuencias en un vector.
+			for (int i=0; i< datos[0].length() - motif; i++) { 
 				secuencias [i] =(datos [0].substring(i, i+motif));
 				System.out.println(secuencias [i]);
 			}
 			for (int j=0; j<= datos[0].length() - motif; j++) { //Se empiezan a comparar las secuencias.
+				
 				for (int k = 0; k<datos[0].length() - motif; k++) {
 						if (secuencias[k].equals(secuencias[j])) {
 							contador ++;
+							
+							if (auxiliar>contador) {
+								repetido = secuencias[k];
+							}
+							else
+								repetido = "No hay";
 						}
+						auxiliar = contador;
 				}
 				System.out.println(secuencias[j] + " " + contador);
 				contador =0;
+				System.out.println("Es: " + repetido);
 			}
+			}
+			
 		}
-		catch (Exception ex) {}
-		
+		catch (Exception ex) {}	
 	}
 	public static void main(String[] args) throws IOException {
 		
