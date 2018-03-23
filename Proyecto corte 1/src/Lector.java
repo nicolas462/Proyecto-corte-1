@@ -34,14 +34,14 @@ public class Lector {
 			String line = br.readLine();//Se crea un string donde se almacena una línea del archivo			
 			String [] datos = line.split(",");//Se apartan los datos por comas y se guardan en vectores.
 			String [] secuencias = new String [datos [0].length() - motif];//Se almacenan las secuencias en un vector.
-			/*while (line != null) {*/
+			//while (line != null) {
 			for (int i=0; i< datos[0].length() - motif; i++)
 			{ 
 				secuencias[i]=datos[0].substring(i, i+motif);
 				/*bw.write (datos [0].substring(i, i+motif));
 				bw.newLine();*/
 			}
-			//}
+			
 			 
 			for (int j=0; j<datos[0].length() - motif; j++) //Se empiezan a comparar las secuencias.
 			{ 
@@ -54,18 +54,20 @@ public class Lector {
 								if (contador > 1) {
 								auxiliar = contador; //Se almacena el mayor número de repeticiones.
 								repetido = secuencias[k];
-								}	
+								}
 						}
-	
 				}
 				//System.out.println(secuencias[j] + " " + contador);
 				
 				contador =0;
-				
-				
-			
 			}
+			if(repetido == "" ) {
+				System.out.println("No se encontró subcadena repetida.");
+			}
+			else {
 			System.out.println("La subcadena " + repetido + " se repite " + auxiliar + " veces");
+			}
+			//}
 		}
 		catch (Exception ex) {}	
 	}
