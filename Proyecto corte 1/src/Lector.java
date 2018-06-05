@@ -1,15 +1,21 @@
 import java.io.*;
 import java.util.Scanner;
 
+
+
 /**
  * Esta clase lee la cadena genética para encontrar motif
  * @author Nicolás Espejo
  *
  */
 public class Lector {
-	public int contador = 0, auxiliar = 0;
-	public String repetido= "";
-	//Función para mostrar la secuencia
+
+	int max_occurrences = Integer.MIN_VALUE; //
+	String motif_winner = ""; //
+	
+	/**
+	 * 
+	 */
 	public void Imprimir() {
 		try {
 			FileReader fr = new FileReader ("secuencia.txt"); //Lee el archivo .txt
@@ -25,55 +31,73 @@ public class Lector {
 		catch (Exception ex) {}
 		
 	}
-
-	public void motif(int motif) {
-		try {
-			FileReader fr = new FileReader("secuencia.txt"); //Leer archivo
-			BufferedReader br = new BufferedReader(fr);//Almacena la lectura del archivo
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter (System.out));
-			String line = br.readLine();//Se crea un string donde se almacena una línea del archivo			
-			String [] datos = line.split(",");//Se apartan los datos por comas y se guardan en vectores.
-			String [] secuencias = new String [datos [0].length() - motif];//Se almacenan las secuencias en un vector.
-			//while (line != null) {
-			for (int i=0; i< datos[0].length() - motif; i++)
-			{ 
-				secuencias[i]=datos[0].substring(i, i+motif);
-				bw.write (datos [0].substring(i, i+motif));
-				bw.newLine();
-				bw.flush();
-			}
+	
+	/**
+	 * Cuántas veces se repite el motif
+	 * @param motif - Secuencia elegida
+	 * @return - Cantidad de veces que se encontró
+	 */
+	public int counterOcurrences (String motif)
+	{
+		int counter =0;
+		try 
+		{
+			FileReader file = new FileReader("secuencia.txt");
+			BufferedReader br = new BufferedReader(file);
 			
-			 
-			for (int j=0; j<datos[0].length() - motif; j++) //Se empiezan a comparar las secuencias.
-			{ 
-				for (int k = 0; k<datos[0].length() - motif; k++) 
+			String line = br.readLine();
+			
+			while (line != null) // Hasta que no haya nada en línea
+		    {
+				for (int i = 0; i < line.length() - motif.length() ; i++)
 				{
-						if (secuencias[k].equals(secuencias[j])) //Se comparan las secuencias.
-						{
-							contador ++;
-							if (contador >= auxiliar)
-								if (contador > 1) {
-								auxiliar = contador; //Se almacena el mayor número de repeticiones.
-								repetido = secuencias[k];
-								}
-						}
+					if (line.substring(i, i + motif.length()).equals(motif))  // Si es igual al motif el substring elegido
+					{
+						counter += 1;
+						i+= motif.length() - 1;
+					}	
 				}
-				//System.out.println(secuencias[j] + " " + contador);
 				
-				contador =0;
-			}
-			if(repetido == "" ) {
-				System.out.println("No se encontró motif repetido.");
-			}
-			else {
-			System.out.println("El motif que más se repite es " + repetido + ", está " + auxiliar + " veces.");
-			}
-			//}
+				line=br.readLine(); // Siguiente línea
+		    }
+		}    
+		catch(Exception ex){}	
+		return counter;
+   }
+	/**
+	 * Genera las variaciones con repetición, o combinaciones
+	 * @param subsequence
+	 * @param size - Tamaño del motif
+	 */
+	public void generateCombinations(String subsequence, int size)
+	{
+		if(size == 1)
+		{
+			compareMotif(subsequence + "A");
+			compareMotif(subsequence + "C");
+			compareMotif(subsequence + "G");
+			compareMotif(subsequence + "T");
 		}
-		catch (Exception ex) {}	
+		else
+		{
+			generateCombinations(subsequence + "A", size - 1);
+			generateCombinations(subsequence + "C", size - 1);
+			generateCombinations(subsequence + "G", size - 1);
+			generateCombinations(subsequence + "T", size - 1);
+		}
 	}
-	public static void main(String[] args) throws IOException {
-		
-	}
-
+	
+	/**
+	 * 
+	 * @param motif_candidate
+	 */
+	public void compareMotif(String motif_candidate)
+	{
+		int counter = counterOcurrences(motif_candidate);
+		if(counter > max_occurrences)
+		{
+			max_occurrences = counter;
+			motif_winner = motif_candidate;
+		}
+	}	
 }
