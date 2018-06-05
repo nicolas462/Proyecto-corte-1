@@ -72,7 +72,7 @@ public class Lector {
 	public void generateCombinations(String subsequence, int size)
 	{
 		if(size == 1)
-		{
+		{ 	// Compara la cada combinación
 			compareMotif(subsequence + "A");
 			compareMotif(subsequence + "C");
 			compareMotif(subsequence + "G");
@@ -92,12 +92,12 @@ public class Lector {
 	 * @param motif_candidate
 	 */
 	public void compareMotif(String motif_candidate)
-	{
-		int counter = counterOcurrences(motif_candidate);
+	{	
+		int counter = counterOcurrences(motif_candidate);	// Cuenta las ocurrencias de la combinación
 		if(counter > max_occurrences)
 		{
-			max_occurrences = counter;
-			motif_winner = motif_candidate;
+			max_occurrences = counter; 	// Se guarda la cantidad de ocurrencias mayor
+			motif_winner = motif_candidate;	// Se guarda el motif usado, o sea, el que tiene mayor ocurrencias
 		}
 	}	
 }
